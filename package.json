@@ -24,8 +24,10 @@
   },
   "homepage": "https://github.com/Sami-Az/github-battle#readme",
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-icons": "^3.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
