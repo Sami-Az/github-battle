@@ -17,6 +17,7 @@ class PlayerInput extends Component {
     e.preventDefault()
     this.props.onSubmit(this.state.username)
   }
+
   handleChange (e) {
     this.setState({
       username: e.target.value
