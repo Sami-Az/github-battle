@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PlayerInput from './PlayerInput';
 import PlayerPreview from './PlayerPreview';
 import Instructions from './Instructions';
+import Result from './Result';
 
 class Battle extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class Battle extends Component {
 
     this.state = {
       playerOne: null,
-      playerTwo: null
+      playerTwo: null,
+      battle: false
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,8 +39,13 @@ class Battle extends Component {
   }
 
   render() {
-    const { playerOne, playerTwo } = this.state;
+    const { playerOne, playerTwo, battle } = this.state;
 
+    if( battle === true ) {
+      return (
+        <Result playerOne={playerOne} playerTwo={playerTwo} />
+      )
+    }
     return (
       <React.Fragment>
         <Instructions />
@@ -70,6 +77,14 @@ class Battle extends Component {
                 />
             }
           </div>
+          {playerOne && playerTwo && (
+            <button 
+              className="btn dark-btn btn-space" 
+              onClick={() => this.setState({ battle: true})
+            }>
+              Battle
+            </button>
+          )}
         </div>  
       </React.Fragment>
     )
