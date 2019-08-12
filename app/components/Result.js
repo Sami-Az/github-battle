@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { battle } from '../utils/api';
 import Card from './Card';
 import ProfileList from './ProfileList';
+import Loading from './Loading';
 
 class Result extends Component {
   constructor(props) {
     super(props)
-    
+
     this.state = {
       winner: null,
       loser: null,
@@ -38,7 +39,7 @@ class Result extends Component {
     const  { winner, loser, error, loading } = this.state;
 
     if (loading === true ) {
-      return <p>LOADING...</p>
+      return <Loading text='Battling' />
     }
 
     if (error) {
@@ -61,7 +62,7 @@ class Result extends Component {
             />
           </Card>
           <Card 
-            header={loser.score === loser.score ? 'Tie': 'Loser'}
+            header={winner.score === loser.score ? 'Tie': 'Loser'}
             subheader={`Score: ${loser.score.toLocaleString()}`}
             avatar={loser.profile.avatar_url}
             href={loser.profile.html_url}
@@ -74,7 +75,8 @@ class Result extends Component {
         </div>
         <button 
           className="btn dark-btn btn-space"
-          onClick={() => this.props.onResetPlayers}>
+          onClick={() => this.props.onResetPlayers()}
+        >
           Reset
         </button>
       </React.Fragment>
