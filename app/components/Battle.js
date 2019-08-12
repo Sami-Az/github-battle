@@ -16,6 +16,7 @@ class Battle extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleReset = this.handleReset.bind(this);
+ 
   }
 
   handleSubmit (id, player) {
@@ -37,13 +38,21 @@ class Battle extends Component {
         playerTwo: null
        })
   }
-
+  
   render() {
     const { playerOne, playerTwo, battle } = this.state;
 
     if( battle === true ) {
       return (
-        <Result playerOne={playerOne} playerTwo={playerTwo} />
+        <Result 
+          playerOne={playerOne}
+          playerTwo={playerTwo}
+          onResetPlayers={() => this.setState({
+            playerOne: null,
+            playerTwo: null,
+            battle: false
+          })}
+        />
       )
     }
     return (
