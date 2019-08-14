@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import withHover from './withHover';
 
 const styles = {
   container: {
@@ -22,49 +23,22 @@ const styles = {
     fontSize: '14px'
   }
 }
-class Tooltip extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      hovering: false
-    }
-    this.onMouseOver = this.onMouseOver.bind(this);
-    this.onMouseOut = this.onMouseOut.bind(this);
-  }
-
-  onMouseOver () {
-    this.setState({
-      hovering: true
-    })
-  }
-  onMouseOut () {
-    this.setState({
-      hovering: false
-    })
-  }
-
-  render() {
-    const { text, children } = this.props;
-    const { hovering } = this.state;
-
-    return (
-      <div
-        onMouseOver={this.onMouseOver}
-        onMouseOut={this.onMouseOut}
-        style={styles.container}
-      >
+const Tooltip = ({ text, children, hovering }) => {
+   return (
+      <div style={styles.container}>
         {hovering === true && (
           <div style={styles.tooltip}>{text}</div>
         )}
         {children}
       </div>
     )
-  }
 }
 
 Tooltip.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  hovering: PropTypes.bool.isRequired,
 }
 
-export default Tooltip;
+// Second argument is to avoid any naming-collision with other props that Tooltip may have already
+export default withHover(Tooltip, 'hovering');
