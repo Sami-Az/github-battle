@@ -7,7 +7,7 @@ const Instructions = () => {
     <ThemeConsumer>
       {({ theme }) => (
         <div className="instructions-container">
-          <h1 className="center-text header-lg">
+          <h1 className="center-text header-lg instructions">
             INSTRUCTIONS
           </h1>
           <ol className="container-sm grid center-text battle-instructions">

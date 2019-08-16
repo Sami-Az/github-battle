@@ -46,6 +46,10 @@ li {
   color: inherit;
 }
 
+.nav li {
+  margin-right: 10px;
+}
+
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -59,6 +63,11 @@ li {
   font-size: 35px;
   font-weight: 300;
   margin: 20px;
+}
+
+.instructions {
+  background: lightgray;
+  border-radius: 3px;
 }
 
 .header-sm {
@@ -262,4 +271,8 @@ li {
 
 .light-btn:disabled {
   background: #292929;
+}
+
+.space-between {
+  justify-content: space-between;
 }

@@ -9,7 +9,7 @@ const LanguagesNav  = ({selected, onUpdateLangage}) => {
           <li key={language}>
             <button 
               className="btn-clear nav-link"
-              style={language === selected ? {color: 'pink' }: null}
+              style={language === selected ? {color: 'gold' }: null}
               onClick={() => onUpdateLangage(language)}
             >
                 {language}
