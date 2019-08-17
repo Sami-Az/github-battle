@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import queryString from 'query-string';
 import { battle } from '../utils/api';
+import { Link } from 'react-router-dom';
 import Card from './Card';
 import ProfileList from './ProfileList';
 import Loading from './Loading';
@@ -18,7 +19,7 @@ class Result extends Component {
 
   }
   componentDidMount() {
-    const { playerOne, playerTwo } = this.props;
+    const { playerOne, playerTwo } = queryString.parse(this.props.location.search);
     battle([ playerOne, playerTwo ])
       .then((players) => {
         this.setState({
@@ -73,21 +74,15 @@ class Result extends Component {
             />
           </Card>
         </div>
-        <button 
+        <Link 
           className="btn dark-btn btn-space"
-          onClick={() => this.props.onResetPlayers()}
+          to='/battle'
         >
           Reset
-        </button>
+        </Link>
       </React.Fragment>
     )
   }
-}
-
-Result.propTypes = {
-  playerOne: PropTypes.string.isRequired,
-  playerTwo: PropTypes.string.isRequired,
-  onResetPlayers: PropTypes.func.isRequired,
 }
 
 export default Result;
