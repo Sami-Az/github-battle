@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './index.css';
-import Popular from './components/Popular';
-import Battle from './components/Battle';
-import Nav from './components/Nav';
 import { ThemeProvider } from './context/theme';
-import Result from './components/Result';
+import Nav from './components/Nav';
+import Loading from './components/Loading';
+
+const Popular = React.lazy(() => import ('./components/Popular'));
+const Battle = React.lazy(() => import ('./components/Battle'));
+const Result = React.lazy(() => import ('./components/Result'));
 
 class App extends React.Component {
   state = {
@@ -25,13 +27,14 @@ class App extends React.Component {
           <div className={this.state.theme}>
             <div className="container">
                 <Nav />
-
-                <Switch>
-                  <Route exact path='/' component={Popular} />
-                  <Route exact path='/battle' component={Battle} />
-                  <Route path='/battle/results' component={Result}/>
-                  <Route render={() => <h1>404 Page Not Found</h1>} />
-                </Switch>
+                <React.Suspense fallback={<Loading />}>
+                  <Switch>
+                    <Route exact path='/' component={Popular} />
+                    <Route exact path='/battle' component={Battle} />
+                    <Route path='/battle/results' component={Result}/>
+                    <Route render={() => <h1>404 Page Not Found</h1>} />
+                  </Switch>
+                </React.Suspense>
             </div>
           </div>
         </ThemeProvider>
