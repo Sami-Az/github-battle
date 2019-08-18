@@ -63,7 +63,7 @@ export function battle (players) {
 }
 
 export function fetchPopularRepos(langauge) {
-  const endpoint = window.encodeURI(`http://api.github.com/search/repositories?q=stars:>1+language:${langauge}&sort=stars&order=desc&type=Repositories`)
+  const endpoint = window.encodeURI(`https://api.github.com/search/repositories?q=stars:>1+language:${langauge}&sort=stars&order=desc&type=Repositories`)
 
   return fetch(endpoint)
   .then((res) => res.json())
