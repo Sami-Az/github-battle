@@ -3,23 +3,16 @@ import PropTypes from 'prop-types';
 import { ThemeConsumer } from '../context/theme';
 
 class PlayerInput extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
+  state = {
       username: ''
-    }
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit (e) {
+  handleSubmit = (e) => {
     e.preventDefault()
     this.props.onSubmit(this.state.username)
   }
 
-  handleChange (e) {
+  handleChange = (e) => {
     this.setState({
       username: e.target.value
     })

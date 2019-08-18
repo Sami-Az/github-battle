@@ -5,22 +5,17 @@ import ReposGrid from './ReposGrid';
 import Loading from './Loading';
 
 class Popular extends Component {
-  constructor() {
-    super()
-    this.state = {
-      selectedLanguage: 'All',
-      repos: {},
-      error: null
-    }
-    this.updateLanguage = this.updateLanguage.bind(this)
-    this.isLoading = this.isLoading.bind(this)
+  state = {
+    selectedLanguage: 'All',
+    repos: {},
+    error: null
   }
 
   componentDidMount () {
     this.updateLanguage(this.state.selectedLanguage)
   }
 
- updateLanguage (lang) {
+ updateLanguage = (lang) => {
     this.setState({ 
       selectedLanguage: lang,
       error: null
@@ -43,11 +38,12 @@ class Popular extends Component {
         })
     }
   }
-    isLoading () {
-      const { selectedLanguage, repos, error} = this.state;
+  isLoading = () => {
+    const { selectedLanguage, repos, error} = this.state;
 
-      return !repos[selectedLanguage] && error === null
-    }
+    return !repos[selectedLanguage] && error === null
+  }
+  
   render() {
     const { selectedLanguage, repos, error} = this.state;
   
